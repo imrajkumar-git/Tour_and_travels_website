@@ -1,0 +1,31 @@
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: cyan;
+}
+.navbar-brand{
+    text-shadow: grey;
+    font-family: ubunutu;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+    color: lawngreen;
+    padding: 0px;
+    margin: 0px;
+    color-adjust: initial;
+}
+.nav-link{
+    color: lightseagreen;
+    font-size: 22px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bolder;
+    font-family: ubunutu;
+}
+
+#over{  
+    width: 10px;
+    height: 10px;
+    background: yellow;
+}

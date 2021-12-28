@@ -1,0 +1,43 @@
+{% extends 'home.html'%}
+{%load static%}
+{% block main %}
+   <div  class="fixed-top" ></div><span id="over" class="fixed-top" style="width: 10px; height: 20px; margin-left:15%; border-radius:40%; background: yellow; visibility: hidden;"></span>
+        <table border="1" class="table bg-success text-light">
+          <center><h1 style="background-color: aqua;  ">Travels_place_path_data</h1></center>
+            <tr>
+                <th>S.N.</th>
+                <th>ID</th>
+                <th>travels_place_information</th>
+                <th>title</th>
+                <th>route_name</th>
+                <th>ackage_type</th>
+                <th>route_informatin</th>
+            </tr>
+            {% if databases%}
+            {% for database in databases %}
+            <tr class="h"><td>{{forloop.counter}}</td>
+                <td id="{{database.id}}">{{database.id}}</td>
+                <td>{{database.travels_place_information}}</td>
+                <td>{{database.title}}</td>
+                <td>{{database.route_name}}</td>
+                <td>{{database.Package_type}}</td>
+                <td>{{database.route_information}}</td>
+                <a href="edit-room?travels_place_path.id={{each_room.id}}"><Button class="btn btn-danger">Edit</Button></a>
+
+              </tr>
+            {% endfor %}
+            {%endif%}
+    </table>
+   
+
+
+{% block js %}
+<script src="{% static '/js/bootstrap.min.js'%}"></script>
+<script>
+  function a(){
+    document.getElementById("over").style.visibility="visible";
+  }
+</script>
+{%endblock%}
+{% endblock %}
+

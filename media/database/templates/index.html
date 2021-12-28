@@ -1,0 +1,120 @@
+{% extends 'home.html'%}
+{%load static%}
+{% block main %}
+   <div  class="fixed-top" ></div><span id="over" class="fixed-top" style="width: 10px; height: 20px; margin-left:15%; border-radius:40%; background: yellow; visibility: hidden;"></span>
+        <table border="1" class="table bg-success text-light">
+            <tr>
+                <th>S.N.</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Remarks</th>
+                <th>Created-on</th>
+                <th>Customer</th>
+            </tr>
+            {% for database in databases %}
+            <tr class="h"><td>{{forloop.counter}}</td>
+                <td id="{{database.id}}">{{database.id}}</td>
+                <td>{{database.name}}</td>
+                <td>{{database.description}}</td>
+                <td>Rs.{{database.price}}</td>
+                <td>{{database.remarks}}</td>
+                <td>{{database.created}}</td>
+                <td>{{database.vendor}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <div class="container-fluid text-center ">
+        <h3 class="text-danger">The total times of buys: <span class="text-danger bold">{{count}}</span></h3>
+        <div class="row row-cols-md-3 text-center">
+            <div class="col">
+                <div class="card" >
+                    <div class="card-body">
+                      <h3 class="card-title text-success mt-2">
+                      
+                      </h3>
+                      <h6 class="card-subtitle mb-2 text-muted ">Total Buys:-{{count}</h6>
+                      
+                        <table class="table">
+                           
+                            <tr><th>S.N</th><th>ID</th>
+                            <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                        {% for database in sa %}
+                        
+                    <tr><td>{{forloop.counter}}</td>
+                        <td>{{database.id}}</td>
+                        <td><a href="#{{database.id}}" onclick="a()">{{database.name}}</a></td>
+                        <td>{{database.price}}</td>
+                    </tr>{% endfor %}
+                        </table>
+                        
+                    </div>
+                  </div>
+                  
+            </div>
+            <div class="col">
+                <div class="card" >
+                    <div class="card-body">
+                      <h3 class="card-title text-success mt-2">
+                        
+                      </h3>
+                      <h6 class="card-subtitle mb-2 text-muted ">Total Buys:-{{bashant}}</h6>
+                      <table class="table">
+                           
+                        <tr><th>S.N</th><th>ID</th>
+                        <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                    {% for database in ba %}
+                    
+                <tr><td>{{forloop.counter}}</td>
+                    <td>{{database.id}}</td>
+                    <td><a href="#{{database.id}}" onclick="a()">{{database.name}}</a></td>
+                    <td>{{database.price}}</td>
+                </tr>{% endfor %}
+                    </table>
+                    </div>
+                  </div>
+                  
+            </div>
+            <div class="col">
+                <div class="card" >
+                    <div class="card-body">
+                      <h3 class="card-title text-success mt-2">
+                      </h3>
+                      <h6 class="card-subtitle mb-2 text-muted ">Total Buys:-{{dewan}}</h6>
+                      <table class="table">
+                           
+                        <tr><th>S.N</th><th>ID</th>
+                        <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                    {% for database in de %}
+                    
+                <tr><td>{{forloop.counter}}</td>
+                    <td>{{database.id}}</td>
+                    <td><a href="#{{database.id}}" onclick="a()">{{database.name}}</a></td>
+                    <td>{{database.price}}</td>
+                </tr>{% endfor %}
+                    </table>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% block js %}
+<script src="{% static '/js/bootstrap.min.js'%}"></script>
+<script>
+  function a(){
+    document.getElementById("over").style.visibility="visible";
+  }
+</script>
+{%endblock%}
+{% endblock %}
+
