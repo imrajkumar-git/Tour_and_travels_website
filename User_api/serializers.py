@@ -22,10 +22,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         return super().validate(attrs)
     def create(self,validated_data):
         return CustomUser.objects.create_user(**validated_data)
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'email','contactno','password','Profile_Image']
+        fields = ['id', 'email','contactno','Profile_Image','first_name','last_name']
 
 class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255, min_length=3)
