@@ -49,8 +49,7 @@ admin.site.register(Travelsplacesinformation, Travels_places_information)
 class TravelsPlace(admin.ModelAdmin):
     search_fields = ['user_id']
     list_display = ('Tour_id','travels_place_information','route_name','route_information')
-
-  
+   
 admin.site.register(TravelsPlacePath,TravelsPlace)
 
 

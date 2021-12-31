@@ -96,7 +96,7 @@ class Rating_ViewSet(viewsets.ModelViewSet):
     serializer_class = User_Rating_serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id','user']
+    filter_fields = ['id','user','Rating']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
