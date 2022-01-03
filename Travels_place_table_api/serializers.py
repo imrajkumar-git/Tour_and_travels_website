@@ -43,7 +43,7 @@ class Departure_Date_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model=Suitable_Date
-        fields=('id','From','TO')
+        fields=('id','Month','From','TO')
  
 
     def validate(self, data):
@@ -58,7 +58,7 @@ class Departure_Month_Serializer(serializers.ModelSerializer):
     suitable_date=Departure_Date_Serializer(read_only=True,many=True)
     class Meta:
         model=Departure_Month
-        fields=('id','month_name','travels_place_information','suitable_date')
+        fields=('id','travels_place_information','month_name','suitable_date')
 
    
 
@@ -119,7 +119,7 @@ class travels_package_serializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Check Out date must be greater than Check in date")
         
             
-        if int(No_of_people)>20:
+        if int(No_of_people)>20:    
             raise serializers.ValidationError({
                 'month_name': 'No_of people must be less then 20 character.'
             })

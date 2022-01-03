@@ -83,7 +83,7 @@ class Departure_Month(models.Model):
     travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='departure_Month',null=True,on_delete=models.CASCADE)
     month_name = models.CharField(max_length=50)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.month_name
 
 class Suitable_Date(models.Model):

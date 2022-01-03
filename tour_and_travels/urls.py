@@ -12,7 +12,7 @@ from rest_framework_simplejwt import views as jwt_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('Useraddresses_api.urls')),
-    path('router', include('Travels_place_table_api.urls')),  
+    path('router/', include('Travels_place_table_api.urls')),  
     path('api/', include('Useraddresses_api.urls')),
     path('account/',include('User_api.urls')),
     path('api/', include('Travels_place_table_api.urls')),

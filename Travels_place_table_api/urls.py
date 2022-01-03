@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .import views
-from .views import  Departure_Date_ViewSet, MenuListView, Package_booking_ViewSet, Rating_ViewSet, Travel_Places_Information_ViewSet,Travel_Places_path_ViewSet,Travel_Places_category_ViewSet
+from .views import  Departure_Date_ViewSet, Departure_Month_ViewSet, MenuListView, Package_booking_ViewSet, Rating_ViewSet, Travel_Places_Information_ViewSet,Travel_Places_path_ViewSet,Travel_Places_category_ViewSet
 
 router = DefaultRouter()
 router.register('travel-place-information',Travel_Places_Information_ViewSet,basename="travel_place")
@@ -10,7 +10,7 @@ router.register('Travels-category', Travel_Places_category_ViewSet ,basename="tr
 router.register('User-Rating', Rating_ViewSet ,basename="User_Rating")
 router.register('Travels-place-booking', Package_booking_ViewSet, basename="Package_booking")
 router.register('departre-date', Departure_Date_ViewSet, basename="Departuere_Date")
-
+router.register('departure-month', Departure_Month_ViewSet,basename='Departure-month')
 
 urlpatterns = [
     path('hello/', MenuListView.as_view(), name='Travels_place_information'),
