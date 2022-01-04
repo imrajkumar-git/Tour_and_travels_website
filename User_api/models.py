@@ -4,18 +4,18 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework_simplejwt.tokens import RefreshToken
 from .managers import CustomUserManager
 
+
 # Create your models here.
 
-AUTH_PROVIDERS = {'facebook': 'facebook', 'google': 'google',
-                  'twitter': 'twitter', 'email': 'email'}
+AUTH_PROVIDERS = {'email': 'email'}
 
     
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=20 ,default="name")
     email = models.EmailField(_('email address'), unique=True)
     contactno = models.CharField(max_length=50,default="9841989898",null=False)
-    Profile_Image = models.ImageField(upload_to='user/%Y/',null=True)
-    is_verified = models.BooleanField(default=True)
+    Profile_Image = models.ImageField(upload_to='user/%Y/',default='/profile_icon/1.jpg')
+    is_verified = models.BooleanField(default=False)
 
     auth_provider = models.CharField(
         max_length=255, blank=False,

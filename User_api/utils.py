@@ -1,19 +1,11 @@
 import json
 from django import http
+from django.core.mail import EmailMessage
 
 
-def Register(request, data):
-    if request.GET.get('debug'):  
-        response = json.dumps(data, indent=4)
-        try:
-            from pygments import highlight, lexers, formatters
-            return http.HttpResponse(highlight(
-                response,
-                lexers.get_lexer_by_name('json'),
-                formatters.get_formatter_by_name('html', full=True),
-            ))
-        except ImportError:
-            return http.HttpResponse(response, content_type='text/plain')
-    else:
-        return http.HttpResponse(
-            json.dumps(data), content_type='application/json')
+class Util:
+    @staticmethod
+    def send_email(data):
+        email = EmailMessage(subject=data['email_subject'],body=data['email_body'],to=[data['to_email']])
+        email.send()
+

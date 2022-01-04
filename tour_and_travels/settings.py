@@ -17,7 +17,7 @@ SECRET_KEY = 'cz0&0lxy#_mb!m&da2b)u25nq)2j#+q$e5+ustx6%dtuj67k6x'
 DEBUG = True
 APPEND_SLASH=False
 
-ALLOWED_HOSTS = ['192.168.10.83', '192.168.0.114','localhost']
+ALLOWED_HOSTS = ['192.168.10.83', '192.168.0.109','localhost']
 
 
 # Application definition
@@ -160,24 +160,31 @@ AUTH_USER_MODEL = 'User_api.CustomUser'
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
 
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
+    'ALGORITHM': 'HS256','HS512'
+    'SIGNING_KEY': 'SECRET_KEY',
     'VERIFYING_KEY': None,
 
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
+    'USER_NAME':'first_name',
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(days=1),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 DATE_INPUT_FORMATS = ['%m-%d-%Y']
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'rajkumararyal0977@gmail.com'
+EMAIL_HOST_PASSWORD = 'lmsqfgqhehjzvgal'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_PAGE_DOMAIN = 'https://mydomain.com/'

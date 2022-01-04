@@ -91,10 +91,13 @@ class Suitable_Date(models.Model):
         ("1","Sunday"),
         ("2","Monday"),
     )
+
     From=models.DateField(null=True)
+
     TO=models.DateField(null=True)
     Month = models.ForeignKey(Departure_Month, on_delete=models.CASCADE, related_name='suitable_date', null=True, blank=True)
     day_name = models.CharField(max_length=100)
+
 
     #categoryPart
 

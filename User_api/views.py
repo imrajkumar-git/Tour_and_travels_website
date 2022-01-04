@@ -1,3 +1,4 @@
+from django.http import response
 from django.shortcuts import render
 from rest_framework import generics,status
 from .serializers import RegisterSerializer,LoginSerializer,UserSerializer
@@ -7,10 +8,11 @@ from .models import CustomUser
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 import jwt
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser,IsAuthenticated
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
+from .utils import Util
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -21,30 +23,42 @@ class RegisterView(generics.GenericAPIView):
         serializer.save()
         user_data = serializer.data
         user = CustomUser.objects.get(email= user_data['email'])
+        print(user)
         token = RefreshToken.for_user(user).access_token
         current_site = get_current_site(request).domain
         relativeLink = reverse('email-verify')
-        return Response(user_data,status = status.HTTP_201_CREATED)
+        print(relativeLink)
+        absurl = 'http://'+ "192.168.0.109:8888" + str(relativeLink) + "?token="+str(token)
+        email_body = 'Hi '+user.first_name  +  user.last_name + ' Use the link below to verify your email: '  +  absurl
+        data = {'email_body': email_body, 'to_email': user.email,
+                'email_subject': 'Verify your email'}
+        print("i am sending mail")
+        Util.send_email(data,)
+        print('please check your email: ' + user.email)
+        return Response(user_data, status = status.HTTP_201_CREATED)
 
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
         token = request.GET.get('token')
         try:
+
             print("i am verifying mail")
-            payload = jwt.decode(token,settings.SECRET_KEY)
+            print(token)
+            payload = jwt.decode(token, settings.SECRET_KEY,algorithms=['HS256'])
+           
+
             user = CustomUser.objects.get(id=payload['user_id'])
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
             return Response({'email':'Successfully activated'},status = status.HTTP_200_OK)
-
         except jwt.ExpiredSignatureError as identifier:
             return Response({'error':'Activation Expired'},status = status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
-            return Response({'error':'Token invalid'},status = status.HTTP_400_BAD_REQUEST)
+            return Response({'error':'Invalid Token'},status = status.HTTP_400_BAD_REQUEST)
 
 
-
+            
 class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
     queryset = CustomUser.objects.all()
@@ -64,12 +78,16 @@ class ActionBasedPermission(AllowAny):
                 return klass().has_permission(request,view)
             return False
 
+
+
 class UserAPIView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     lookup_field = 'id'
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['id']
+
+    permission_classses=[IsAuthenticated]
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         AllowAny : ['list','retrieve'],

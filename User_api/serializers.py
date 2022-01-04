@@ -34,11 +34,10 @@ class LoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         max_length=68, min_length=6, write_only=True)
     tokens = serializers.CharField(max_length=68,min_length=6,read_only=True)
-    first_name=serializers.CharField(max_length=50,read_only=True)
-    last_name=serializers.CharField(max_length=50,read_only=True)
+    
     class Meta:
         model = CustomUser
-        fields = ['id','email', 'password', 'tokens','first_name','last_name']
+        fields = ['id','email', 'password', 'tokens']
 
 
     def validate(self, attrs):
