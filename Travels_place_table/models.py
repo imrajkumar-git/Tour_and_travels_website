@@ -2,6 +2,7 @@ from typing import Callable, DefaultDict
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import fields
+from django.db.models.base import Model
 from django.db.models.deletion import CASCADE
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
@@ -32,6 +33,10 @@ class travels_package(models.Model):
 
 #travelsplacepathdetails
 class Travelsplacesinformation(models.Model):
+    From=models.CharField(max_length=25,null=True)
+    To=models.CharField(max_length=30,null=True)
+    Max_Evaluation=models.IntegerField(default="2000")
+    Difficulty_level=models.CharField(max_length=25,null=True)
     Total_cost=models.IntegerField(null=False,default="1000",validators=[MaxValueValidator(100000),MinValueValidator(1000)])
     discount=models.IntegerField(validators=[MaxValueValidator(90),MinValueValidator(0)], null=False,default="10%")
     Travels_category=models.ForeignKey(Travels_category,null=True,on_delete=models.CASCADE)
@@ -47,7 +52,7 @@ class Travelsplacesinformation(models.Model):
     updated_on = models.DateTimeField(blank=True,null=True)
     created_on = models.DateTimeField(blank=True)
     slug= models.SlugField(max_length=200)
-    map=models.CharField(max_length=80,null=True)
+    map=models.TextField(null=True)
     is_booked = models.BooleanField(default=False)
 
  
@@ -93,6 +98,7 @@ class Suitable_Date(models.Model):
     )
 
     From=models.DateField(null=True)
+    travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='departure_Date',null=True,on_delete=models.CASCADE)
 
     TO=models.DateField(null=True)
     Month = models.ForeignKey(Departure_Month, on_delete=models.CASCADE, related_name='suitable_date', null=True, blank=True)
@@ -127,4 +133,21 @@ def __str__(self):
     return self.destination.destination
     
 
-  
+class Suitable_Places(models.Model):
+    Image=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
+    Image1=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
+    Image2=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
+    Image3=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
+    Image4=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
+    travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+
+class Highlights(models.Model):
+   Highlights=models.TextField(null=True)
+   travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+
+
+class Cost_Details(models.Model):
+    Cost_Details=models.TextField(null=True)
+    travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+
+

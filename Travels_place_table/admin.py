@@ -2,13 +2,18 @@ from re import search
 from django.contrib import admin
 from django.db.models.base import Model
 from .models import( 
+Cost_Details,
 Suitable_Date,
 Departure_Month,
+Suitable_Places,
 Travelsplacesinformation,
 TravelsPlacePath,
 User_rating,
 travels_package,
-Travels_Package_Booking)
+Travels_Package_Booking,
+Highlights,
+Cost_Details
+)
 
 
 
@@ -20,7 +25,7 @@ update_package_is_booked_to_false.short_description_message = "Update all is_boo
 
 
 class Travels_places_information(admin.ModelAdmin):
-    list_display = ('id','__str__','is_booked')
+    list_display = ('id','is_booked','slug')
     list_filter = ("slug",)
     search_fields = ['user_id']
     fieldsets = [
@@ -41,6 +46,10 @@ class Travels_places_information(admin.ModelAdmin):
         ("slug", {'fields': ["slug"]}),
         ("map", {'fields': ["map"]}),
         ("is_booked",{'fields':["is_booked"]}),
+        ("From",{'fields':["From"]}),
+        ("To",{'fields':["To"]}),
+        ("Difficulty_level",{'fields':["Difficulty_level"]}),
+        ("Max_Evaluation",{'fields':["Max_Evaluation"]}),
 
     ]
 admin.site.register(Travelsplacesinformation, Travels_places_information)
@@ -66,7 +75,7 @@ admin.site.register(Suitable_Date,Day)
 
 class rating(admin.ModelAdmin):
     search_fields=['id']
-    list_display=('user','Rating')
+    list_display=('user','Rating','travels_place_information')
 admin.site.register(User_rating,rating)
 
 class Travels_package(admin.ModelAdmin):
@@ -77,4 +86,19 @@ admin.site.register(travels_package,Travels_package)
 class travels_place_booking(admin.ModelAdmin):
     list_display=['id','destination_name','checking_date']
 admin.site.register(Travels_Package_Booking,travels_place_booking)
+
+
+class Suitable_places(admin.ModelAdmin):
+    list_display=['id','travels_place_information']
+admin.site.register(Suitable_Places,Suitable_places)    
+
+
+class highlights(admin.ModelAdmin):
+    list_display=['id','travels_place_information']
+admin.site.register(Highlights,highlights)    
+
+
+class cost_details(admin.ModelAdmin):
+    list_display=['id','travels_place_information']
+admin.site.register(Cost_Details,cost_details)    
 

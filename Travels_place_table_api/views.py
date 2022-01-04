@@ -4,8 +4,20 @@
 from django.db.models import query
 from rest_framework import permissions
 from rest_framework import response
-from Travels_place_table.models import Departure_Month, Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,TravelsPlacePath,Travels_category, User_rating, travels_package
-from .serializers import  Departure_Date_Serializer,Departure_Month_Serializer, travels_package_serializer,  Travels_places_Serializer,Travels_Place_Path_serializer,Travels_Place_category_serializer, User_Rating_serializer
+from Travels_place_table.models import(
+Departure_Month, 
+Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
+TravelsPlacePath,Travels_category, User_rating, travels_package,
+Highlights,Cost_Details,Suitable_Places
+)
+
+from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer,
+travels_package_serializer, Travels_places_Serializer,
+Travels_Place_Path_serializer,
+Travels_Place_category_serializer, User_Rating_serializer,
+Cost_Details_serializer,Highlights_serializer,Suitable_places_serializer
+)
+
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework import viewsets
@@ -117,6 +129,47 @@ class Rating_ViewSet(viewsets.ModelViewSet):
         AllowAny : ['list','retrieve'],
     }    
 
+class Highlights_ViewSet(viewsets.ModelViewSet):
+   
+    queryset =Highlights.objects.all()
+    serializer_class = Highlights_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id','travels_place_information']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    }    
+
+
+class Suitable_places_ViewSet(viewsets.ModelViewSet):
+   
+    queryset =Suitable_Places.objects.all()
+    serializer_class = Suitable_places_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id','travels_place_information']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    }    
+
+class Cost_Details_ViewSet(viewsets.ModelViewSet):
+   
+    queryset =Cost_Details.objects.all()
+    serializer_class = Cost_Details_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id','travels_place_information']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    }    
+
+
 class Package_ViewSet(viewsets.ModelViewSet):
    
     queryset =travels_package.objects.all()
@@ -138,6 +191,8 @@ class Package_ViewSet(viewsets.ModelViewSet):
         response['data'] = serializer.data
         response['response'] = "Your Rating is sucessfully Submitted:"
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
+
+
 
 class Package_booking_ViewSet(viewsets.ModelViewSet):
     queryset =Travels_Package_Booking.objects.all()
