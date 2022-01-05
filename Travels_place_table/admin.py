@@ -29,10 +29,11 @@ class Travels_places_information(admin.ModelAdmin):
     list_filter = ("slug",)
     search_fields = ['user_id']
     fieldsets = [
-        ("category", {'fields': ["Travels_category"]}),
         ("Title", {'fields': ["travel_place_title"]}),
+        ("Description",{'fields':["Description"]}),
         ("max_group_size", {'fields': ["max_group_size"]}),
-        ("Age_range", {'fields': ["Age_range"]}),
+        ("Max_Age_range", {'fields': ["Max_Age_range"]}),
+        ("Min_Age_range", {'fields': ["Min_Age_range"]}),
         ("operate_language", {'fields': ["operate_language"]}),
         ("travels_place_images", {'fields': ["travels_place_image"]}),
         ("", {'fields': ["travels_place_image1"]}),

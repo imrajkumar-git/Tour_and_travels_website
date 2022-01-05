@@ -86,7 +86,7 @@ class Departure_Date_ViewSet(viewsets.ModelViewSet):
     serializer_class = Departure_Date_Serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id','travels_place_information','Month']
+    filter_fields = ['id','travels_place_information','Month','From']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],

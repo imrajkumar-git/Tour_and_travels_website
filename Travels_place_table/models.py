@@ -2,7 +2,7 @@ from typing import Callable, DefaultDict
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import fields
-from django.db.models.base import Model
+from django.db.models.base import Model, ModelBase
 from django.db.models.deletion import CASCADE
 from django.db.models.expressions import F
 from django.utils.translation import ugettext_lazy as _
@@ -39,11 +39,12 @@ class Travelsplacesinformation(models.Model):
     Difficulty_level=models.CharField(max_length=25,null=True)
     Total_cost=models.IntegerField(null=False,default="1000",validators=[MaxValueValidator(100000),MinValueValidator(1000)])
     discount=models.IntegerField(validators=[MaxValueValidator(90),MinValueValidator(0)], null=False,default="10%")
-    Travels_category=models.ForeignKey(Travels_category,null=True,on_delete=models.CASCADE)
     travel_place_title = models.CharField(null=False, blank=False,max_length=250,default='Dhading Simle Trek')
     Tour_operator=models.CharField(max_length=25,default="stravels")
     max_group_size=models.IntegerField(default="10",null=False)
-    Age_range=models.IntegerField(default="12")
+    Max_Age_range=models.IntegerField(default="12")
+    Min_Age_range=models.IntegerField(default="12")
+    Description=models.TextField(null="true")
     operate_language=models.CharField(max_length=20,default="english")
     travels_place_image = models.ImageField(upload_to='places/%Y/%m/', blank=False,null=True)
     travels_place_image1 = models.ImageField(upload_to='places/%Y/%m/', blank=False,null=True)

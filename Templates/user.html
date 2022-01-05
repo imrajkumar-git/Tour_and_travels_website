@@ -63,10 +63,10 @@
                 <td> {% if database.Profile_Image %}
 
 
-                    <img src="{{database.Profile_Image.url}}" class='img-circular' alt="Cinque Terre" style= "border-radius: 50%;" height=80vh; width=60vh;/>
+                    <img src="{{database.Profile_Image.url}}" class='img-circular' style= "border-radius: 50%;" height=80vh; width=60vh;/>
 
                     {% else %}
-                        <img src= "{% static 'images/e3.jpg' %}" alt="images" style= "border-radius: 50%;" width="80vh">
+                        <img src= "{% static 'images/e3.jpg' %}" alt="images" style= "border-radius: 50%;" height=80vh; width="60vh">
     
                     {%endif%}</td>
                

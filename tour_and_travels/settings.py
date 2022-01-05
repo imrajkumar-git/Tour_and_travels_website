@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'tour_and_travels.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'TOURS',
+        'NAME': 'Tour_and_Travels',
         'USER' : 'postgres',
         'PASSWORD': 'python12345',
         'HOST' : 'localhost'

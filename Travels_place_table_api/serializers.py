@@ -88,9 +88,9 @@ class Travels_places_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Travelsplacesinformation
         fields = [
-        'id','Total_cost','discount','Travels_category',
-        'travel_place_title','Tour_operator',
-        'max_group_size','Age_range','operate_language',
+        'id','Total_cost','discount',
+        'travel_place_title','Description','Tour_operator',
+        'max_group_size','Max_Age_range','Min_Age_range','operate_language',
         'travels_place_image',
         'travels_place_image1','travels_place_image2',
         'duration','updated_on','created_on','slug','map',
