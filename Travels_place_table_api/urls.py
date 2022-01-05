@@ -31,8 +31,6 @@ router.register('cost-details', Cost_Details_ViewSet,basename='cost-details')
 
 urlpatterns = [
     path('hello/', MenuListView.as_view(), name='Travels_place_information'),
-    path('Travels_place_path_data/',views.database1, name='Database'),    
-    path('Travels_place_path_data/api/Travels_place_information_data/api/travels_place_path_data/',views.database1, name='Database2'),     
     path('helloword/', views.hello_world),
 
 ]

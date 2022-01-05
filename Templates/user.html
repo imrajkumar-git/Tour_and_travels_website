@@ -42,23 +42,28 @@
                 <th>ID</th>
                 <th>E-Mail:</th>
                 <th>Contact No:</th>
-                <th>User Name:</th>
+                <th>first_name:</th>
+                <th>last_name:</th>
+
                 <th>profile</th>
                 
             </tr>
-            {% for database in database2 %}
+            {% if database%}
+
+            {%for database in database%}
             <tr class="h"><td>{{forloop.counter}}</td>
                 <td id="{{database.id}}">{{database.id}}</td>
                 
 
                 <td>{{database.email}}</td>
                 <td>{{database.contactno}}</td>
-                <td>{{database.username}}</td>
-                
-                <td> {% if database.icon %}
+                <td>{{database.first_name}}</td>
+                <td>{{database.last_name}}</td>
+
+                <td> {% if database.Profile_Image %}
 
 
-                    <img src="{{database.icon.url}}" class='img-circular' alt="Cinque Terre" style= "border-radius: 50%;" height=80vh; width=60vh;/>
+                    <img src="{{database.Profile_Image.url}}" class='img-circular' alt="Cinque Terre" style= "border-radius: 50%;" height=80vh; width=60vh;/>
 
                     {% else %}
                         <img src= "{% static 'images/e3.jpg' %}" alt="images" style= "border-radius: 50%;" width="80vh">
@@ -70,7 +75,7 @@
 
             </tr>
             {% endfor %}
-
+{%endif%}
 
     </table>
 

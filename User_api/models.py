@@ -16,7 +16,7 @@ class CustomUser(AbstractUser):
     contactno = models.CharField(max_length=50,default="9841989898",null=False)
     Profile_Image = models.ImageField(upload_to='user/%Y/',default='/profile_icon/1.jpg')
     is_verified = models.BooleanField(default=False)
-
+    address=models.CharField(max_length=30,default="kathmandu")
     auth_provider = models.CharField(
         max_length=255, blank=False,
         null=False, default=AUTH_PROVIDERS.get('email'))

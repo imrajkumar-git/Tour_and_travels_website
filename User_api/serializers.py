@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'email','contactno','password','first_name','last_name','Profile_Image']
+        fields = ['id', 'email','contactno','password','first_name','last_name','address','Profile_Image']
 
     
     def validate(self,attrs):
@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'email','contactno','Profile_Image','first_name','last_name']
+        fields = ['id', 'email','contactno','Profile_Image','first_name','last_name','address']
 
 class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255, min_length=3)

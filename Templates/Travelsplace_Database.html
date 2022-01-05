@@ -1,34 +1,62 @@
-{% extends 'home.html'%}
-{%load static%}
-{% block main %}
-   <div  class="fixed-top" ></div><span id="over" class="fixed-top" style="width: 10px; height: 20px; margin-left:15%; border-radius:40%; background: yellow; visibility: hidden;"></span>
-        <table border="1" class="table bg-success text-light">
-          <center><h1 style="background-color: aqua;  ">Travels_place_path_data</h1></center>
-            <tr>
-                <th>S.N.</th>
-                <th>ID</th>
-                <th>travels_place_information</th>
-                <th>title</th>
-                <th>route_name</th>
-                <th>ackage_type</th>
-                <th>route_informatin</th>
-            </tr>
-            {% if databases%}
-            {% for database in databases %}
-            <tr class="h"><td>{{forloop.counter}}</td>
-                <td id="{{database.id}}">{{database.id}}</td>
-                <td>{{database.travels_place_information}}</td>
-                <td>{{database.title}}</td>
-                <td>{{database.route_name}}</td>
-                <td>{{database.Package_type}}</td>
-                <td>{{database.route_information}}</td>
-                <a href="edit-room?travels_place_path.id={{each_room.id}}"><Button class="btn btn-danger">Edit</Button></a>
 
-              </tr>
-            {% endfor %}
-            {%endif%}
-    </table>
-   
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>complete responsive tour and travel agency website design tutorial</title>
+
+    <link rel="stylesheet" href="{%  static 'main.css' %}"/>
+    <link rel="stylesheet" href= "{% static 'https://unpkg.com/swiper/swiper-bundle.min.css' %}" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="/myapp/" class="logo"><span>R</span>Travels</a>
+
+</header>
+
+<br>
+    <br>
+    <br>
+    <br>
+   <br><BR>
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th><h1>ID</h1></th>
+          <th><h1>route_name</h1></th>
+          <th><h1>route_information</h1></th>
+      </tr>
+      </thead>
+      <tbody>
+        
+        {% if databases%}
+        {% for database in databases %}
+        <tr class="h">
+
+          <td><h5>{{database.id}}</h5></td>
+            <td><h5>{{database.route_name}}</h5></td>
+            <td><h5>{{database.route_information}}</h5></td>
+
+          </tr>
+        {% endfor %}
+        {%endif%}
+      </tbody>
+    
 
 
 {% block js %}
@@ -39,5 +67,4 @@
   }
 </script>
 {%endblock%}
-{% endblock %}
 

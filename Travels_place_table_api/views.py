@@ -86,7 +86,7 @@ class Departure_Date_ViewSet(viewsets.ModelViewSet):
     serializer_class = Departure_Date_Serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id','travels_place_information']
+    filter_fields = ['id','travels_place_information','Month']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
@@ -252,13 +252,6 @@ def hello_world(request):
 #return render(request, 'main/order_details.html', context)"
 
 
-def database1(request):
-    context = {
-        'databases':TravelsPlacePath.objects.all(),
-     
-    }
- 
-    return render(request,'Travelsplace_Database.html',context)
 
 
 class MenuListView(ListView):

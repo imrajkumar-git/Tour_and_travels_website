@@ -24,11 +24,16 @@ from django.contrib import admin
 from django.views.generic import TemplateView,ListView
 from .import views
 from myapp.models import package
+from django.urls import path
 
 
 
 urlpatterns = [
-url(r'^packages/',ListView.as_view(model=package,template_name="package.html")),
+
+    path('',views.database, name='Database'),    
+    path('Travels_place_path_data/',views.database1),    
+    path('user/',views.database3, name='user'),
+
 
 
     #

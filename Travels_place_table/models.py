@@ -80,10 +80,7 @@ class TravelsPlacePath(models.Model):
 
 
 class Departure_Month(models.Model):
-    Place_STATUS = ( 
-    ("1", "available"), 
-    ("2", "not available"),    
-    ) 
+    
 
     travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='departure_Month',null=True,on_delete=models.CASCADE)
     month_name = models.CharField(max_length=50)

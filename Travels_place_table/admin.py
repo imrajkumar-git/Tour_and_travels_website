@@ -95,6 +95,10 @@ admin.site.register(Suitable_Places,Suitable_places)
 
 class highlights(admin.ModelAdmin):
     list_display=['id','travels_place_information']
+    fieldsets= [
+        ("travels_place_information",{'fields':["travels_place_information"]}),
+        ("Highlights",{'fields':["Highlights"]})
+    ]
 admin.site.register(Highlights,highlights)    
 
 

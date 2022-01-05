@@ -28,7 +28,7 @@ class RegisterView(generics.GenericAPIView):
         current_site = get_current_site(request).domain
         relativeLink = reverse('email-verify')
         print(relativeLink)
-        absurl = 'http://'+ "192.168.10.83:8888" + str(relativeLink) + "?token="+str(token)
+        absurl = 'http://'+ "192.168.0.109:8888" + str(relativeLink) + "?token="+str(token)
         email_body = 'Hi '+user.first_name  +  user.last_name + ' Use the link below to verify your email: '  +  absurl
         data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Verify your email'}
@@ -51,7 +51,7 @@ class VerifyEmail(generics.GenericAPIView):
             if not user.is_verified:
                 user.is_verified = True
                 user.save()
-            return Response({'email':'Successfully activated'},status = status.HTTP_200_OK)
+            return Response({'email':'Successfully activated continue login'},status = status.HTTP_200_OK)
         except jwt.ExpiredSignatureError as identifier:
             return Response({'error':'Activation Expired'},status = status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
