@@ -21,10 +21,37 @@ User_rating,Suitable_Places,Highlights,Cost_Details
 
 
 class User_Rating_serializer(serializers.ModelSerializer):
+    Rating=serializers.IntegerField()
+
     class Meta:
         model=User_rating
         fields = "__all__"
     
+    def validate(self, data):
+        Rating=data.get('Rating')
+
+        if int(Rating)<0:
+            raise serializers.ValidationError({
+                'error':'rating can not be negative'
+
+        })
+        
+        if int(Rating)==0:
+            raise serializers.ValidationError({
+                'error':'rating can not be Zero'
+
+        })
+        
+        if int(Rating)>100:
+            raise serializers.ValidationError({
+                'error':'maximum Rating is 100'
+
+        })
+        print(Rating)
+
+        return data
+
+
 
 
 
@@ -150,16 +177,18 @@ class travels_package_serializer(serializers.ModelSerializer):
         No_of_people=data.get('No_of_people')
 
         if data['check_out_date'] <= data['checking_date']:
-            raise serializers.ValidationError("Check Out date must be greater than Check in date")
+            raise serializers.ValidationError({
+                'error':"Check Out date must be greater than Check in date"
+            })
         
             
         if int(No_of_people)>20:    
             raise serializers.ValidationError({
-                'month_name': 'No_of people must be less then 20 character.'
+                'error': 'No_of people must be less then 20 character.'
             })
         if int(No_of_people)<1:
             raise serializers.ValidationError({
-                'No_of_people':'No of people can not  be negative'
+                'error':'No of people can not  be negative'
             })    
         
        

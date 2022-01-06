@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'Useraddresses','Useraddresses_api','Travels_place_table','Travels_place_table_api',
     'django_filters',
-
+    'tinymce',
     
 ]
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'tour_and_travels.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Tour_and_Travels',
+        'NAME': 'C',
         'USER' : 'postgres',
         'PASSWORD': 'python12345',
         'HOST' : 'localhost'
@@ -181,10 +181,40 @@ DATE_INPUT_FORMATS = ['%m-%d-%Y']
 
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'rajkumararyal0977@gmail.com'
-EMAIL_HOST_PASSWORD = 'lmsqfgqhehjzvgal'
+EMAIL_HOST_USER = 'aryalrajkumar4@gmail.com'
+EMAIL_HOST_PASSWORD = 'odfpdhfrzcndjmfn'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_PAGE_DOMAIN = 'https://mydomain.com/'
+
+TINYMCE_DEFAULT_CONFIG = {
+
+   'height': 360,
+   'width': 750,
+   'cleanup_on_startup': True,
+   'custom_undo_redo_levels': 20,
+   'selector': 'textarea',
+   'theme': 'modern',
+   'plugins': '''
+   textcolor save link image media preview codesample contextmenu
+   table code lists fullscreen insertdatetime nonbreaking
+   contextmenu directionality searchreplace wordcount visualblocks
+   visualchars code fullscreen autolink lists charmap print hr
+   anchor pagebreak
+   ''',
+   'toolbar1': '''
+   fullscreen preview bold italic underline | fontselect,
+   fontsizeselect | forecolor backcolor | alignleft alignright |
+   aligncenter alignjustify | indent outdent | bullist numlist table |
+   | link image media | codesample |
+   ''',
+   'toolbar2': '''
+   visualblocks visualchars |
+   charmap hr pagebreak nonbreaking anchor | code |
+   ''',
+   'contextmenu': 'formats | link image',
+   'menubar': True,
+   'statusbar': True,
+   }

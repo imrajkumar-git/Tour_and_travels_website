@@ -109,7 +109,7 @@ class User_rating(models.Model):
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
     travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='user_rating',null=True,on_delete=models.CASCADE)
     Rating=models.IntegerField(validators=[MinValueValidator(0),
-                                        MaxValueValidator(500)],null=True)
+                                        MaxValueValidator(100)],null=True)
     Rating_Description=models.TextField(null=True)                                    
                   
 

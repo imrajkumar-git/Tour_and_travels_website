@@ -1,4 +1,5 @@
 
+from pathlib import Path
 from django import urls
 from django.contrib import admin
 from django.urls import path,include
@@ -17,7 +18,7 @@ urlpatterns = [
     path('account/',include('User_api.urls')),
     path('api/', include('Travels_place_table_api.urls')),
     url('myapp/', include('myapp.urls')),
-
+    path('tinymce/',include('tinymce.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

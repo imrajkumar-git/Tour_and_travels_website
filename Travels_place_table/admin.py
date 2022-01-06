@@ -1,6 +1,8 @@
 from re import search
 from django.contrib import admin
 from django.db.models.base import Model
+from django.db import models
+from tinymce.widgets import TinyMCE
 from .models import( 
 Cost_Details,
 Suitable_Date,
@@ -17,6 +19,9 @@ Cost_Details
 
 
 
+
+
+
 def update_package_is_booked_to_false(model_admin, request, query_set):
     query_set.update(is_booked=False)
 
@@ -28,6 +33,11 @@ class Travels_places_information(admin.ModelAdmin):
     list_display = ('id','is_booked','slug')
     list_filter = ("slug",)
     search_fields = ['user_id']
+
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
+
     fieldsets = [
         ("Title", {'fields': ["travel_place_title"]}),
         ("Description",{'fields':["Description"]}),
@@ -81,6 +91,10 @@ admin.site.register(User_rating,rating)
 
 class Travels_package(admin.ModelAdmin):
     search_fields=['id']
+    
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 admin.site.register(travels_package,Travels_package)
 
 
@@ -96,6 +110,9 @@ admin.site.register(Suitable_Places,Suitable_places)
 
 class highlights(admin.ModelAdmin):
     list_display=['id','travels_place_information']
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
     fieldsets= [
         ("travels_place_information",{'fields':["travels_place_information"]}),
         ("Highlights",{'fields':["Highlights"]})
