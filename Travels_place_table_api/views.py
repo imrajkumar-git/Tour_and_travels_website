@@ -46,7 +46,7 @@ class Travel_Places_Information_ViewSet(viewsets.ModelViewSet):
     serializer_class = Travels_places_Serializer
     lookup_field = 'slug'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id','travel_place_title','duration','slug']
+    filter_fields = ['id','travel_place_title','duration','slug','Travels_Category']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
@@ -71,7 +71,7 @@ class Travel_Places_category_ViewSet(viewsets.ModelViewSet):
     serializer_class = Travels_Place_category_serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id']
+    filter_fields = ['Travels_Category']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],

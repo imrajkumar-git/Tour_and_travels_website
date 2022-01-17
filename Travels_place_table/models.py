@@ -33,6 +33,7 @@ class travels_package(models.Model):
 
 #travelsplacepathdetails
 class Travelsplacesinformation(models.Model):
+    Travels_Category=models.ForeignKey('Travels_category',on_delete=models.CASCADE,null=True)
     From=models.CharField(max_length=25,null=True)
     To=models.CharField(max_length=30,null=True)
     Max_Evaluation=models.IntegerField(default="2000")
@@ -100,8 +101,10 @@ class Suitable_Date(models.Model):
 
     TO=models.DateField(null=True)
     Month = models.ForeignKey(Departure_Month, on_delete=models.CASCADE, related_name='suitable_date', null=True, blank=True)
-    day_name = models.CharField(max_length=100)
 
+
+def __str__(self):
+    return self.travels_place_information.travel_place_title
 
     #categoryPart
 

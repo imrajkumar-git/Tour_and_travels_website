@@ -17,7 +17,7 @@ SECRET_KEY = 'cz0&0lxy#_mb!m&da2b)u25nq)2j#+q$e5+ustx6%dtuj67k6x'
 DEBUG = True
 APPEND_SLASH=False
 
-ALLOWED_HOSTS = ['192.168.10.83', '192.168.0.109','localhost']
+ALLOWED_HOSTS = ['192.168.10.83', '192.168.0.110','*','localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'Useraddresses','Useraddresses_api','Travels_place_table','Travels_place_table_api',
     'django_filters',
     'tinymce',
+    'hotel_app',
     
 ]
 

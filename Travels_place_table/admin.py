@@ -39,6 +39,7 @@ class Travels_places_information(admin.ModelAdmin):
    }
 
     fieldsets = [
+        ("Category",{'fields':["Travels_category"]}),
         ("Title", {'fields': ["travel_place_title"]}),
         ("Description",{'fields':["Description"]}),
         ("max_group_size", {'fields': ["max_group_size"]}),

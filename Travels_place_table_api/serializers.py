@@ -115,7 +115,7 @@ class Travels_places_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Travelsplacesinformation
         fields = [
-        'id','Total_cost','discount',
+        'id','Travels_Category','Total_cost','discount',
         'travel_place_title','Description','Tour_operator',
         'max_group_size','Max_Age_range','Min_Age_range','operate_language',
         'travels_place_image',
@@ -132,7 +132,7 @@ class Travels_Place_category_serializer(serializers.ModelSerializer):
     
     class Meta:
         model= Travels_category
-        fields = "__all__"                                   
+        fields = "__all__"                                 
 
 
 

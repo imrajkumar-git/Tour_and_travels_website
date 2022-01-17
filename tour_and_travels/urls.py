@@ -18,6 +18,7 @@ urlpatterns = [
     path('account/',include('User_api.urls')),
     path('api/', include('Travels_place_table_api.urls')),
     url('myapp/', include('myapp.urls')),
+    path('hotel/',include('hotel_app.urls')),
     path('tinymce/',include('tinymce.urls')),
 ]
 
