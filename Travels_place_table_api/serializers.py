@@ -127,12 +127,11 @@ class Travels_places_Serializer(serializers.ModelSerializer):
         ]
 
 
-
 class Travels_Place_category_serializer(serializers.ModelSerializer):
     
     class Meta:
         model= Travels_category
-        fields = "__all__"                                 
+        fields = "__all__"                                   
 
 
 

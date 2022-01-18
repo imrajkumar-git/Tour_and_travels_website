@@ -14,7 +14,9 @@ User_rating,
 travels_package,
 Travels_Package_Booking,
 Highlights,
-Cost_Details
+Cost_Details,
+Travels_category
+
 )
 
 
@@ -39,7 +41,7 @@ class Travels_places_information(admin.ModelAdmin):
    }
 
     fieldsets = [
-        ("Category",{'fields':["Travels_category"]}),
+        ("Category",{'fields':["Travels_Category"]}),
         ("Title", {'fields': ["travel_place_title"]}),
         ("Description",{'fields':["Description"]}),
         ("max_group_size", {'fields': ["max_group_size"]}),
@@ -84,6 +86,12 @@ class Day(admin.ModelAdmin):
     list_display=('id','From')
 
 admin.site.register(Suitable_Date,Day)
+
+class Category(admin.ModelAdmin):
+    search_fields = ['id']
+    list_display=('id','category')
+
+admin.site.register(Travels_category,Category)
 
 class rating(admin.ModelAdmin):
     search_fields=['id']
