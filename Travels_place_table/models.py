@@ -140,18 +140,18 @@ class Suitable_Places(models.Model):
     Image2=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
     Image3=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
     Image4=models.ImageField(upload_to='places/Suitable_places',blank=True,null=True)  
-    travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+    travels_place_information=models.ForeignKey(Travelsplacesinformation,related_name='suitable_places',null=False,on_delete=models.CASCADE)
 
 class Highlights(models.Model):
    Highlights=models.TextField(null=True)
-   travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+   travels_place_information=models.ForeignKey(Travelsplacesinformation,related_name='highlights',null=False,on_delete=models.CASCADE)
 
 def __str__(self):
     return self.Highlights
 
 class Cost_Details(models.Model):
     Cost_Details=models.TextField(null=True)
-    travels_place_information=models.ForeignKey(Travelsplacesinformation,null=False,on_delete=models.CASCADE)
+    travels_place_information=models.ForeignKey(Travelsplacesinformation,related_name='cost_details',null=False,on_delete=models.CASCADE)
 
 def __str__(self):
     return self.Cost_Details

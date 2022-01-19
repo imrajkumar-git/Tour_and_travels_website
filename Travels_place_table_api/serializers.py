@@ -56,6 +56,30 @@ class User_Rating_serializer(serializers.ModelSerializer):
 
 
 
+class Suitable_places_serializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model= Suitable_Places
+        fields = "__all__"                                   
+ 
+        
+        
+
+class Cost_Details_serializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model=Cost_Details
+        fields = "__all__"                                   
+ 
+        
+
+class Highlights_serializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model= Highlights
+        fields = "__all__"                                   
+ 
+        
 
 class Travels_Place_Path_serializer(serializers.ModelSerializer):
 
@@ -108,7 +132,8 @@ class Travels_places_Serializer(serializers.ModelSerializer):
     Travels_place_path = Travels_Place_Path_serializer(read_only=True, many=True)
     departure_Month = Departure_Month_Serializer(read_only=True, many=True)
     departure_Date = Departure_Date_Serializer(read_only=True, many=True)
-
+    highlights=Highlights_serializer(read_only=True,many=True)
+    cost_details=Cost_Details_serializer(read_only=True,many=True)
     Total_cost=serializers.IntegerField()
     discount=serializers.IntegerField()
    
@@ -131,7 +156,7 @@ class Travels_places_Serializer(serializers.ModelSerializer):
         'travels_place_image1','travels_place_image2',
         'duration','updated_on','created_on','slug','map',
         'Difficulty_level','From','To','Max_Evaluation',
-        'Travels_place_path','user_rating','departure_Month','departure_Date'
+        'Travels_place_path','user_rating','highlights','cost_details','departure_Month','departure_Date'
        
         ]
 
@@ -144,30 +169,6 @@ class Travels_Place_category_serializer(serializers.ModelSerializer):
 
 
 
-class Suitable_places_serializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model= Suitable_Places
-        fields = "__all__"                                   
- 
-        
-        
-
-class Cost_Details_serializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model=Cost_Details
-        fields = "__all__"                                   
- 
-        
-
-class Highlights_serializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model= Highlights
-        fields = "__all__"                                   
- 
-        
 
 class travels_package_serializer(serializers.ModelSerializer):
     User_information = UserSerializer(read_only=True, many=True)

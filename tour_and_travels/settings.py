@@ -144,7 +144,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join('media')
 
 
 
@@ -193,6 +197,7 @@ EMAIL_PAGE_DOMAIN = 'https://mydomain.com/'
 
 TINYMCE_DEFAULT_CONFIG = {
 
+   'images_upload_url': 'postAcceptor.php',
    'height': 360,
    'width': 750,
    'cleanup_on_startup': True,
@@ -219,4 +224,22 @@ TINYMCE_DEFAULT_CONFIG = {
    'contextmenu': 'formats | link image',
    'menubar': True,
    'statusbar': True,
-   }
+
+
+}
+   
+
+
+DEFAULT = {
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': 'link image preview codesample contextmenu table code',
+    'toolbar1': 'bold italic underline | alignleft aligncenter alignright alignjustify '
+           '| bullist numlist | outdent indent | table | link image | codesample | preview code',
+    'contextmenu': 'formats | link image',
+    'menubar': False,
+    'inline': False,
+    'statusbar': True,
+    'height': 360,
+}
+

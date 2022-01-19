@@ -15,7 +15,7 @@ class Travels_Blogs(models.Model):
 class Travels_Blogs_Comment(models.Model):
         Travels_Blogs=models.ForeignKey(Travels_Blogs,on_delete=models.CASCADE,null=True)
 
-        author=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
+        user=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
         comments=models.TextField(null=False,default="your own content")
         created_on = models.DateTimeField(blank=True,auto_now=True)
         updated_on = models.DateTimeField(blank=True,null=True,auto_now=True)

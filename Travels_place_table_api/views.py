@@ -5,6 +5,10 @@ from django.db.models import query
 from rest_framework import permissions
 from rest_framework import response
 from Travels_Blogs.models import Travels_Blogs_Comment
+import os
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from Travels_place_table.models import(
 Departure_Month, 
 Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
@@ -289,5 +293,4 @@ class MenuListView(ListView):
     model = Travelsplacesinformation
     template_name = 'Travels_place_information.html'
     context_object_name = 'menu_items'
-
 
