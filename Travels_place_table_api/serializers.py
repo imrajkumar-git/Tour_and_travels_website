@@ -16,7 +16,7 @@ from Travels_place_table.models import(
 Travels_category,Suitable_Date, 
 Departure_Month, Travels_Package_Booking, 
 Travelsplacesinformation,TravelsPlacePath,
-User_rating,Suitable_Places,Highlights,Cost_Details
+User_rating,Suitable_Places,Highlights,Cost_Details,Travels_Blogs
  )
 
 
@@ -47,7 +47,7 @@ class User_Rating_serializer(serializers.ModelSerializer):
                 'error':'maximum Rating is 100'
 
         })
-        print(Rating)
+        print('Rating' + Rating + 'is sucessfully submitted')
 
         return data
 
@@ -65,8 +65,12 @@ class Travels_Place_Path_serializer(serializers.ModelSerializer):
         ]    
 
 
-
-
+class Travels_Blogs_Serializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model= Travels_Blogs
+        fields = "__all__"                                   
+ 
 
 
 class Departure_Date_Serializer(serializers.ModelSerializer):

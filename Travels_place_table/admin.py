@@ -15,8 +15,8 @@ travels_package,
 Travels_Package_Booking,
 Highlights,
 Cost_Details,
-Travels_category
-
+Travels_category,
+Travels_Blogs
 )
 
 
@@ -133,3 +133,7 @@ class cost_details(admin.ModelAdmin):
     list_display=['id','travels_place_information']
 admin.site.register(Cost_Details,cost_details)    
 
+
+class Travels_blog(admin.ModelAdmin):
+    list_display=['id','Blog_Title']
+admin.site.register(Travels_Blogs,Travels_blog)    

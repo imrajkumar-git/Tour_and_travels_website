@@ -12,8 +12,9 @@ Travel_Places_path_ViewSet,
 Travel_Places_category_ViewSet,
 Suitable_places_ViewSet,
 Cost_Details_ViewSet,
-Highlights_ViewSet
-
+Highlights_ViewSet,
+Travels_blogs_viewSet,
+Travels_blogs_viewSet
 
 )
 
@@ -28,6 +29,9 @@ router.register('departure-month', Departure_Month_ViewSet,basename='Departure-m
 router.register('suitable-places', Suitable_places_ViewSet,basename='suitable-places')
 router.register('highlights', Highlights_ViewSet,basename='highlights')
 router.register('cost-details', Cost_Details_ViewSet,basename='cost-details')
+router.register('blogs', Travels_blogs_viewSet,basename='Travels_blogs')
+
+
 
 urlpatterns = [
     path('hello/', MenuListView.as_view(), name='Travels_place_information'),
