@@ -4,6 +4,7 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import serializers
 from rest_framework.routers import SimpleRouter
+from Travels_Blogs.models import Travels_Blogs_Comment
 from User_api.serializers import UserSerializer
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -16,8 +17,9 @@ from Travels_place_table.models import(
 Travels_category,Suitable_Date, 
 Departure_Month, Travels_Package_Booking, 
 Travelsplacesinformation,TravelsPlacePath,
-User_rating,Suitable_Places,Highlights,Cost_Details,Travels_Blogs
+User_rating,Suitable_Places,Highlights,Cost_Details
  )
+from Travels_Blogs.models import Travels_Blogs 
 
 
 class User_Rating_serializer(serializers.ModelSerializer):
@@ -71,7 +73,10 @@ class Travels_Blogs_Serializer(serializers.ModelSerializer):
         model= Travels_Blogs
         fields = "__all__"                                   
  
-
+class Travels_Blogs_Comment_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Travels_Blogs_Comment
+        fields = ['id','author','Travels_Blogs','comments','created_on','updated_on']                                 
 
 class Departure_Date_Serializer(serializers.ModelSerializer):
     From=serializers.DateField()

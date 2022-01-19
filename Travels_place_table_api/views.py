@@ -4,19 +4,21 @@
 from django.db.models import query
 from rest_framework import permissions
 from rest_framework import response
+from Travels_Blogs.models import Travels_Blogs_Comment
 from Travels_place_table.models import(
 Departure_Month, 
 Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
 TravelsPlacePath,Travels_category, User_rating, travels_package,
-Highlights,Cost_Details,Suitable_Places,Travels_Blogs
+Highlights,Cost_Details,Suitable_Places
 )
+from Travels_Blogs.models import Travels_Blogs
 
 from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer, Travels_Blogs_Serializer,
 travels_package_serializer, Travels_places_Serializer,
 Travels_Place_Path_serializer,
 Travels_Place_category_serializer, User_Rating_serializer,
 Cost_Details_serializer,Highlights_serializer,Suitable_places_serializer,
-Travels_Blogs_Serializer
+Travels_Blogs_Serializer,Travels_Blogs_Comment_serializer
 )
 
 from rest_framework import generics
@@ -206,6 +208,21 @@ class Travels_blogs_viewSet(viewsets.ModelViewSet):
         IsAdminUser : ['update','create','destroy','partial_update'],
         AllowAny : ['list','retrieve'],
     } 
+
+    
+class Travels_blogs_Comment_viewSet(viewsets.ModelViewSet):
+    
+    queryset =Travels_Blogs_Comment.objects.all()
+    serializer_class = Travels_Blogs_Comment_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    } 
+
 
 
 class Package_booking_ViewSet(viewsets.ModelViewSet):
