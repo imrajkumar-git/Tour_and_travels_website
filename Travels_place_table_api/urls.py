@@ -15,7 +15,8 @@ Cost_Details_ViewSet,
 Highlights_ViewSet,
 Travels_blogs_Comment_viewSet,
 Travels_blogs_viewSet,
-Travels_blogs_viewSet
+Travels_blogs_viewSet,
+Travels_blogs_image_viewSet
 
 )
 
@@ -32,7 +33,7 @@ router.register('highlights', Highlights_ViewSet,basename='highlights')
 router.register('cost-details', Cost_Details_ViewSet,basename='cost-details')
 router.register('blogs', Travels_blogs_viewSet,basename='Travels_blogs')
 router.register('User-comment', Travels_blogs_Comment_viewSet,basename='Travels_blogs_comment')
-
+router.register('blogs-image',Travels_blogs_image_viewSet,basename="Travels-image")
 
 
 urlpatterns = [

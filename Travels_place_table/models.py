@@ -38,7 +38,7 @@ class Travelsplacesinformation(models.Model):
     To=models.CharField(max_length=30,null=True)
     Max_Evaluation=models.IntegerField(default="2000")
     Difficulty_level=models.CharField(max_length=25,null=True)
-    Total_cost=models.IntegerField(null=False,default="1000",validators=[MaxValueValidator(100000),MinValueValidator(1000)])
+    Total_cost=models.IntegerField(null=False,default="1000")
     discount=models.IntegerField(validators=[MaxValueValidator(90),MinValueValidator(0)], null=False,default="10%")
     travel_place_title = models.CharField(null=False, blank=False,max_length=250,default='Dhading Simle Trek')
     Tour_operator=models.CharField(max_length=25,default="stravels")

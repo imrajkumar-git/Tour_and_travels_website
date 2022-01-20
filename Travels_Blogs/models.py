@@ -22,3 +22,12 @@ class Travels_Blogs_Comment(models.Model):
 
         def __str__(self):
             return self.author.username    
+
+class Travels_Blogs_Gallery(models.Model):
+    Title=models.CharField(max_length=35,null=False,default="Our own title")
+    User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
+    updated_on = models.DateTimeField(blank=True,null=True,auto_now=True)
+    Image=models.ImageField(upload_to='Travels_Blogs/pictures',blank=True,null=False,default='/profile_icon/1.jpg')  
+
+    def __str__(self):
+        return self.Title

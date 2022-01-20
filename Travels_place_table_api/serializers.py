@@ -4,7 +4,7 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import serializers
 from rest_framework.routers import SimpleRouter
-from Travels_Blogs.models import Travels_Blogs_Comment
+from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery
 from User_api.serializers import UserSerializer
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -100,7 +100,13 @@ class Travels_Blogs_Serializer(serializers.ModelSerializer):
 class Travels_Blogs_Comment_serializer(serializers.ModelSerializer):
     class Meta:
         model=Travels_Blogs_Comment
-        fields = ['id','author','Travels_Blogs','comments','created_on','updated_on']                                 
+        fields = ['id','author','Travels_Blogs','comments','created_on','updated_on']     
+
+
+class Travels_blogs_image_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Travels_Blogs_Gallery
+        fields = "__all__"                            
 
 class Departure_Date_Serializer(serializers.ModelSerializer):
     From=serializers.DateField()
