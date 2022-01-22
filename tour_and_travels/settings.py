@@ -17,7 +17,7 @@ SECRET_KEY = 'cz0&0lxy#_mb!m&da2b)u25nq)2j#+q$e5+ustx6%dtuj67k6x'
 DEBUG = True
 APPEND_SLASH=False
 
-ALLOWED_HOSTS = ['192.168.10.83', '192.168.1.6','*','localhost']
+ALLOWED_HOSTS = ['192.168.10.83', '192.168.1.7','*','localhost']
 
 
 # Application definition

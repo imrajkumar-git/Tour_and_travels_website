@@ -36,6 +36,7 @@ class Travelsplacesinformation(models.Model):
     Travels_Category=models.ForeignKey('Travels_category',on_delete=models.CASCADE,null=True)
     From=models.CharField(max_length=25,null=True)
     To=models.CharField(max_length=30,null=True)
+    summary=models.CharField(max_length=2000,null=False, default='your own world')
     Max_Evaluation=models.IntegerField(default="2000")
     Difficulty_level=models.CharField(max_length=25,null=True)
     Total_cost=models.IntegerField(null=False,default="1000")
@@ -45,7 +46,7 @@ class Travelsplacesinformation(models.Model):
     max_group_size=models.IntegerField(default="10",null=False)
     Max_Age_range=models.IntegerField(default="12")
     Min_Age_range=models.IntegerField(default="12")
-    Description=models.TextField(null="true")
+    Overview=models.TextField(null="true")
     operate_language=models.CharField(max_length=20,default="english")
     travels_place_image = models.ImageField(upload_to='places/%Y/%m/', blank=False,null=True)
     travels_place_image1 = models.ImageField(upload_to='places/%Y/%m/', blank=False,null=True)
@@ -54,7 +55,7 @@ class Travelsplacesinformation(models.Model):
     updated_on = models.DateTimeField(blank=True,null=True)
     created_on = models.DateTimeField(blank=True)
     slug= models.SlugField(max_length=200)
-    map=models.TextField(null=True)
+    map=models.CharField(max_length=2000,null=False,default="Paste the link here")
     is_booked = models.BooleanField(default=False)
 
  
@@ -62,7 +63,6 @@ class Travelsplacesinformation(models.Model):
         return self.travel_place_title
 
 class TravelsPlacePath(models.Model):
-    Tour_id=models.PositiveBigIntegerField(null=True)
     travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='Travels_place_path',null=True,on_delete=models.CASCADE)
     route_name = models.CharField(max_length=200, db_index=True,default='pokhara')
 

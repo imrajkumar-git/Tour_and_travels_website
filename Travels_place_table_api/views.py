@@ -15,14 +15,17 @@ Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
 TravelsPlacePath,Travels_category, User_rating, travels_package,
 Highlights,Cost_Details,Suitable_Places
 )
-from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery
+from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery,Travels_Blogs_category
 
-from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer, Travels_Blogs_Serializer,
+from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,
+Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer, 
+Travels_Blogs_Serializer,
 travels_package_serializer, Travels_places_Serializer,
 Travels_Place_Path_serializer,
 Travels_Place_category_serializer, User_Rating_serializer,
 Cost_Details_serializer,Highlights_serializer,Suitable_places_serializer,
-Travels_Blogs_Serializer,Travels_Blogs_Comment_serializer,Travels_blogs_image_serializer
+Travels_Blogs_Serializer,Travels_Blogs_Comment_serializer,Travels_blogs_image_serializer,
+Travels_blogs_category_serializer
 )
 
 from rest_framework import generics
@@ -233,6 +236,20 @@ class Travels_blogs_image_viewSet(viewsets.ModelViewSet):
     
     queryset =Travels_Blogs_Gallery.objects.all()
     serializer_class = Travels_blogs_image_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    } 
+
+
+class Travels_blogs_category_viewSet(viewsets.ModelViewSet):
+    
+    queryset =Travels_Blogs_category.objects.all()
+    serializer_class = Travels_blogs_category_serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['id']

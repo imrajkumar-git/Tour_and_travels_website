@@ -4,7 +4,7 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import serializers
 from rest_framework.routers import SimpleRouter
-from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery
+from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category
 from User_api.serializers import UserSerializer
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -18,6 +18,7 @@ Travels_category,Suitable_Date,
 Departure_Month, Travels_Package_Booking, 
 Travelsplacesinformation,TravelsPlacePath,
 User_rating,Suitable_Places,Highlights,Cost_Details
+
  )
 from Travels_Blogs.models import Travels_Blogs 
 
@@ -108,6 +109,13 @@ class Travels_blogs_image_serializer(serializers.ModelSerializer):
         model=Travels_Blogs_Gallery
         fields = "__all__"                            
 
+
+class Travels_blogs_category_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Travels_Blogs_category
+        fields="__all__"
+
+
 class Departure_Date_Serializer(serializers.ModelSerializer):
     From=serializers.DateField()
     TO=serializers.DateField()
@@ -156,7 +164,7 @@ class Travels_places_Serializer(serializers.ModelSerializer):
         model = Travelsplacesinformation
         fields = [
         'id','Travels_Category','Total_cost','discount',
-        'travel_place_title','Description','Tour_operator',
+        'travel_place_title','Overview','Tour_operator','summary',
         'max_group_size','Max_Age_range','Min_Age_range','operate_language',
         'travels_place_image',
         'travels_place_image1','travels_place_image2',

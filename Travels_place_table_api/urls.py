@@ -16,7 +16,8 @@ Highlights_ViewSet,
 Travels_blogs_Comment_viewSet,
 Travels_blogs_viewSet,
 Travels_blogs_viewSet,
-Travels_blogs_image_viewSet
+Travels_blogs_image_viewSet,
+Travels_blogs_category_viewSet
 
 )
 
@@ -34,7 +35,7 @@ router.register('cost-details', Cost_Details_ViewSet,basename='cost-details')
 router.register('blogs', Travels_blogs_viewSet,basename='Travels_blogs')
 router.register('User-comment', Travels_blogs_Comment_viewSet,basename='Travels_blogs_comment')
 router.register('blogs-image',Travels_blogs_image_viewSet,basename="Travels-image")
-
+router.register('blogs-category',Travels_blogs_category_viewSet,basename='blogs-category')
 
 urlpatterns = [
     path('hello/', MenuListView.as_view(), name='Travels_place_information'),

@@ -42,7 +42,8 @@ class Travels_places_information(admin.ModelAdmin):
     fieldsets = [
         ("Category",{'fields':["Travels_Category"]}),
         ("Title", {'fields': ["travel_place_title"]}),
-        ("Description",{'fields':["Description"]}),
+        ("Overview",{'fields':["Overview"]}),
+        
         ("max_group_size", {'fields': ["max_group_size"]}),
         ("Max_Age_range", {'fields': ["Max_Age_range"]}),
         ("Min_Age_range", {'fields': ["Min_Age_range"]}),
@@ -63,6 +64,7 @@ class Travels_places_information(admin.ModelAdmin):
         ("To",{'fields':["To"]}),
         ("Difficulty_level",{'fields':["Difficulty_level"]}),
         ("Max_Evaluation",{'fields':["Max_Evaluation"]}),
+        ("summary",{'fields':["summary"]}),
 
     ]
 admin.site.register(Travelsplacesinformation, Travels_places_information)
@@ -70,13 +72,20 @@ admin.site.register(Travelsplacesinformation, Travels_places_information)
 
 class TravelsPlace(admin.ModelAdmin):
     search_fields = ['user_id']
-    list_display = ('Tour_id','travels_place_information','route_name','route_information')
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
+
+    list_display = ('travels_place_information','route_name','route_information')
    
 admin.site.register(TravelsPlacePath,TravelsPlace)
 
 
 class month(admin.ModelAdmin):
     search_fields = ['id']
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 
 admin.site.register(Departure_Month,month)
 
@@ -89,6 +98,9 @@ admin.site.register(Suitable_Date,Day)
 class Category(admin.ModelAdmin):
     search_fields = ['id']
     list_display=('id','category')
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 
 admin.site.register(Travels_category,Category)
 
@@ -108,11 +120,17 @@ admin.site.register(travels_package,Travels_package)
 
 class travels_place_booking(admin.ModelAdmin):
     list_display=['id','destination_name','checking_date']
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 admin.site.register(Travels_Package_Booking,travels_place_booking)
 
 
 class Suitable_places(admin.ModelAdmin):
     list_display=['id','travels_place_information']
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 admin.site.register(Suitable_Places,Suitable_places)    
 
 
@@ -130,5 +148,8 @@ admin.site.register(Highlights,highlights)
 
 class cost_details(admin.ModelAdmin):
     list_display=['id','travels_place_information']
+    formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
 admin.site.register(Cost_Details,cost_details)    
 
