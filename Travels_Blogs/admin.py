@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Travels_Blogs,Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category
+from .models import Travels_Blogs,Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category, Wishlist,Article
 # Register your models here.
 from tinymce.widgets import TinyMCE
 from django.db import models
@@ -31,3 +31,17 @@ admin.site.register(Travels_Blogs_Gallery,travels_blog_gallery)
 class Travels_blogs_category(admin.ModelAdmin):
    list_display=['id']
 admin.site.register(Travels_Blogs_category,Travels_blogs_category)   
+
+class wishlist(admin.ModelAdmin):
+   list_display=['id','Title'
+   ]
+admin.site.register(Wishlist,wishlist)   
+   
+
+class article(admin.ModelAdmin):
+   list_display=['id','Title']
+   formfield_overrides = {
+    models.TextField: {'widget': TinyMCE()}
+   }
+
+admin.site.register(Article,article)

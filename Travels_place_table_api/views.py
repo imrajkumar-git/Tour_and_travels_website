@@ -15,7 +15,7 @@ Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
 TravelsPlacePath,Travels_category, User_rating, travels_package,
 Highlights,Cost_Details,Suitable_Places
 )
-from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery,Travels_Blogs_category
+from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist,Article
 
 from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,
 Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer, 
@@ -25,7 +25,7 @@ Travels_Place_Path_serializer,
 Travels_Place_category_serializer, User_Rating_serializer,
 Cost_Details_serializer,Highlights_serializer,Suitable_places_serializer,
 Travels_Blogs_Serializer,Travels_Blogs_Comment_serializer,Travels_blogs_image_serializer,
-Travels_blogs_category_serializer
+Travels_blogs_category_serializer,Wishlist_serializer,Article_serializer
 )
 
 from rest_framework import generics
@@ -69,7 +69,7 @@ class Travel_Places_path_ViewSet(viewsets.ModelViewSet):
     serializer_class = Travels_Place_Path_serializer
     lookup_field = 'travel_type'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id','route_name','travels_place_information','Tour_id']
+    filter_fields = ['id','route_name','travels_place_information']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
@@ -88,6 +88,33 @@ class Travel_Places_category_ViewSet(viewsets.ModelViewSet):
         AllowAny : ['list','retrieve'],
     }    
 
+
+class Wishlist_ViewSet(viewsets.ModelViewSet):
+   
+    queryset =Wishlist.objects.all()
+    serializer_class = Wishlist_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['category','id']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    }    
+
+   
+class Article_ViewSet(viewsets.ModelViewSet):
+   
+    queryset =Article.objects.all()
+    serializer_class = Article_serializer
+    lookup_field = 'travel_category'
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['category','id']
+    permissions_classes = (ActionBasedPermission)
+    action_permissions = {
+        IsAdminUser : ['update','create','destroy','partial_update'],
+        AllowAny : ['list','retrieve'],
+    }    
 
 
 class Departure_Date_ViewSet(viewsets.ModelViewSet):

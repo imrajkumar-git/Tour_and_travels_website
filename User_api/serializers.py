@@ -15,7 +15,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'email','contactno','password','first_name','last_name','address','Profile_Image']
+        fields = ['id', 'email','contactno','password','first_name','last_name','Address_line1','Address_line2',
+        'State','Postal_Code','Country','Date_of_Birth','Gender','Country_code','address','Profile_Image']
 
     
     def validate(self,attrs):

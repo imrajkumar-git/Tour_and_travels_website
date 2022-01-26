@@ -4,7 +4,7 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import serializers
 from rest_framework.routers import SimpleRouter
-from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category
+from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist,Article
 from User_api.serializers import UserSerializer
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -50,7 +50,6 @@ class User_Rating_serializer(serializers.ModelSerializer):
                 'error':'maximum Rating is 100'
 
         })
-        print('Rating' + Rating + 'is sucessfully submitted')
 
         return data
 
@@ -87,7 +86,7 @@ class Travels_Place_Path_serializer(serializers.ModelSerializer):
     class Meta:
         model= TravelsPlacePath
         fields = [
-        'id','Tour_id','route_name',
+        'id','route_name',
       'route_information','route_picture','travels_place_information'
         ]    
 
@@ -115,6 +114,17 @@ class Travels_blogs_category_serializer(serializers.ModelSerializer):
         model=Travels_Blogs_category
         fields="__all__"
 
+class Wishlist_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Wishlist
+        fields="__all__"
+
+
+class Article_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Article
+        fields="__all__"
+
 
 class Departure_Date_Serializer(serializers.ModelSerializer):
     From=serializers.DateField()
@@ -137,7 +147,7 @@ class Departure_Month_Serializer(serializers.ModelSerializer):
     suitable_date=Departure_Date_Serializer(read_only=True,many=True)
     class Meta:
         model=Departure_Month
-        fields=('id','travels_place_information','month_name','suitable_date')
+        fields=('id','travels_place_information','year_name','month_name','suitable_date')
 
    
 
