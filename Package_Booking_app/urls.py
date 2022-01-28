@@ -7,6 +7,7 @@ app_name = 'hotel_app'
 
 router = DefaultRouter()
 router.register('get-list',RoomView,basename="Roomview")
+
 urlpatterns = [
     path('book/', BookingCreateApiView.as_view(), name='book_room'),
   

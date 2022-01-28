@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'Useraddresses','Useraddresses_api','Travels_place_table','Travels_place_table_api',
     'django_filters',
     'tinymce',
-    'hotel_app',
+    'Package_Booking_app',
     'Travels_Blogs',
     
 ]
@@ -196,7 +196,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_PAGE_DOMAIN = 'https://mydomain.com/'
 
 TINYMCE_DEFAULT_CONFIG = {
-   'images_upload_url':'Travels_Blogs/pictures',
+   'images_upload_url':'/media/',
 
    'height': 360,
    'width': 750,

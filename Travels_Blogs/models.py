@@ -11,7 +11,7 @@ class Travels_Blogs_category(models.Model):
         return self.Blogs_Category
 
 class Travels_Blogs(models.Model):
-    Blog_Title=models.CharField(max_length=36,null=False,default="pokhara")
+    Blog_Title=models.CharField(max_length=1000,null=False,default="pokhara")
     Blog_category=models.ForeignKey(Travels_Blogs_category, on_delete=models.CASCADE,null=True)
     User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
     Blog_Description=models.TextField(null=True)
@@ -45,22 +45,14 @@ class Travels_Blogs_Gallery(models.Model):
         return self.Title
 
 class Wishlist(models.Model):
+        
         Title=models.CharField(max_length=3500,null=False,default="Our own title")
         category=models.ForeignKey(Travels_Blogs_category,on_delete=models.CASCADE,null=False)
+        User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
+        Blogs=models.ForeignKey(Travels_Blogs,on_delete=models.CASCADE,null=True)
         Activity_Level=models.CharField(max_length=1000,default="Modarate",null=False)
         Age=models.IntegerField(default="14+",null=False)
         Duration=models.CharField(max_length=200,default="14D",null=False)
-
-        def __str__(self):
-            return self.Title
-
-
-class Article(models.Model):
-        Title=models.CharField(max_length=3500,null=False,default="Our own title")
-        summary=models.CharField(max_length=7500,null=False,default="Our own title")
-        category=models.ForeignKey(Travels_Blogs_category,on_delete=models.CASCADE,null=False)
-        content=models.TextField(default="write your own content",null=False)
-        Image=models.ImageField(upload_to='Article/',blank=True,null=False,default='/profile_icon/1.jpg')  
 
         def __str__(self):
             return self.Title

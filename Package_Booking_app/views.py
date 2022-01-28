@@ -36,7 +36,6 @@ class RoomDetailView(RetrieveAPIView):
 
 
 class BookingCreateApiView(CreateAPIView):
-    permission_classes = (IsAuthenticated, )
     serializer_class = BookingSerializer
     queryset = Booking.objects.all()
 

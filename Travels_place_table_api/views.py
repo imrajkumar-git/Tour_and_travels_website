@@ -15,7 +15,7 @@ Suitable_Date, Travels_Package_Booking, Travelsplacesinformation,
 TravelsPlacePath,Travels_category, User_rating, travels_package,
 Highlights,Cost_Details,Suitable_Places
 )
-from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist,Article
+from Travels_Blogs.models import Travels_Blogs,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist
 
 from .serializers import(Cost_Details_serializer, Departure_Date_Serializer,
 Departure_Month_Serializer, Highlights_serializer, Suitable_places_serializer, 
@@ -25,7 +25,7 @@ Travels_Place_Path_serializer,
 Travels_Place_category_serializer, User_Rating_serializer,
 Cost_Details_serializer,Highlights_serializer,Suitable_places_serializer,
 Travels_Blogs_Serializer,Travels_Blogs_Comment_serializer,Travels_blogs_image_serializer,
-Travels_blogs_category_serializer,Wishlist_serializer,Article_serializer
+Travels_blogs_category_serializer,Wishlist_serializer
 )
 
 from rest_framework import generics
@@ -103,18 +103,6 @@ class Wishlist_ViewSet(viewsets.ModelViewSet):
     }    
 
    
-class Article_ViewSet(viewsets.ModelViewSet):
-   
-    queryset =Article.objects.all()
-    serializer_class = Article_serializer
-    lookup_field = 'travel_category'
-    filter_backends = [DjangoFilterBackend]
-    filter_fields = ['category','id']
-    permissions_classes = (ActionBasedPermission)
-    action_permissions = {
-        IsAdminUser : ['update','create','destroy','partial_update'],
-        AllowAny : ['list','retrieve'],
-    }    
 
 
 class Departure_Date_ViewSet(viewsets.ModelViewSet):
@@ -165,6 +153,16 @@ class Rating_ViewSet(viewsets.ModelViewSet):
         IsAdminUser : ['update','create','destroy','partial_update'],
         AllowAny : ['list','retrieve'],
     }    
+    def create(self, request, *args, **kwargs):
+        response = {}
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        response['data'] = serializer.data
+        response['response'] = "Rating is Sucessfully Submitted"
+        return Response(response, status=status.HTTP_201_CREATED, headers=headers)
+
 
 class Highlights_ViewSet(viewsets.ModelViewSet):
    
@@ -255,7 +253,17 @@ class Travels_blogs_Comment_viewSet(viewsets.ModelViewSet):
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
         AllowAny : ['list','retrieve'],
-    } 
+    }  
+    def create(self, request, *args, **kwargs):
+        response = {}
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        response['data'] = serializer.data
+        response['response'] = "Your comment is submitted sucessfully!"
+        return Response(response, status=status.HTTP_201_CREATED, headers=headers)
+
 
     
     

@@ -4,7 +4,7 @@ from django.db.models import fields
 from django.db.models.base import Model
 from rest_framework import serializers
 from rest_framework.routers import SimpleRouter
-from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist,Article
+from Travels_Blogs.models import Travels_Blogs_Comment,Travels_Blogs_Gallery,Travels_Blogs_category,Wishlist
 from User_api.serializers import UserSerializer
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
@@ -98,9 +98,12 @@ class Travels_Blogs_Serializer(serializers.ModelSerializer):
         fields = "__all__"                                   
  
 class Travels_Blogs_Comment_serializer(serializers.ModelSerializer):
+    created_on = serializers.DateTimeField()
+    updated_on = serializers.DateTimeField()
+
     class Meta:
         model=Travels_Blogs_Comment
-        fields = ['id','author','Travels_Blogs','comments','created_on','updated_on']     
+        fields = ['id','user','Travels_Blogs','comments','created_on','updated_on']     
 
 
 class Travels_blogs_image_serializer(serializers.ModelSerializer):
@@ -119,11 +122,6 @@ class Wishlist_serializer(serializers.ModelSerializer):
         model=Wishlist
         fields="__all__"
 
-
-class Article_serializer(serializers.ModelSerializer):
-    class Meta:
-        model=Article
-        fields="__all__"
 
 
 class Departure_Date_Serializer(serializers.ModelSerializer):
@@ -215,9 +213,9 @@ class travels_package_serializer(serializers.ModelSerializer):
             })
         
             
-        if int(No_of_people)>20:    
+        if int(No_of_people)>40:    
             raise serializers.ValidationError({
-                'error': 'No_of people must be less then 20 character.'
+                'error': 'No_of people must be less then 40 character.'
             })
         if int(No_of_people)<1:
             raise serializers.ValidationError({

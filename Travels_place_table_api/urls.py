@@ -2,7 +2,6 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .import views
 from .views import(
-Article_ViewSet,
 Departure_Date_ViewSet, 
 Departure_Month_ViewSet,
 MenuListView, 
@@ -39,7 +38,6 @@ router.register('User-comment', Travels_blogs_Comment_viewSet,basename='Travels_
 router.register('blogs-image',Travels_blogs_image_viewSet,basename="Travels-image")
 router.register('blogs-category',Travels_blogs_category_viewSet,basename='blogs-category')
 router.register('wishlist',Wishlist_ViewSet,basename='wishlist')
-router.register('Article',Article_ViewSet,basename='Article')
 
 urlpatterns = [
     path('hello/', MenuListView.as_view(), name='Travels_place_information'),
