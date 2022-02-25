@@ -234,7 +234,7 @@ class Travels_blogs_viewSet(viewsets.ModelViewSet):
     serializer_class = Travels_Blogs_Serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['Blog_Title']
+    filter_fields = ['Blog_Title','slug']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],

@@ -16,10 +16,11 @@ class Travels_Blogs(models.Model):
     User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
     Blog_Description=models.TextField(null=True)
     Image=models.ImageField(upload_to='Travels_Blogs/pictures',blank=True,null=False,default='/profile_icon/1.jpg')  
-    slug=models.SlugField(null=False,default="pkr")
+    slug=models.SlugField(null=False,default="pkr",max_length=250)
     summary=models.CharField(max_length=2000,null=False,default="your own word")
     created_on = models.DateTimeField(blank=True,auto_now=True)
     updated_on = models.DateTimeField(blank=True,null=True,auto_now=True)
+    clicks=models.IntegerField(null=False,default="0",blank=False)
     def __str__(self):
         return self.Blog_Title
 
