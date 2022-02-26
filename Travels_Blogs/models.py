@@ -1,6 +1,6 @@
 from django.db import models
 from User_api.models import CustomUser
-from Travels_place_table.models import Travels_category
+from Travels_place_table.models import Travels_category,Travelsplacesinformation
 
 # Create your models here.
 class Travels_Blogs_category(models.Model):
@@ -46,7 +46,7 @@ class Travels_Blogs_Gallery(models.Model):
         return self.Title
 
 class Wishlist(models.Model):
-        
+        Travels_place_information=models.ForeignKey(Travelsplacesinformation,on_delete=models.CASCADE,null=True)
         Title=models.CharField(max_length=3500,null=False,default="Our own title")
         category=models.ForeignKey(Travels_Blogs_category,on_delete=models.CASCADE,null=False)
         User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)

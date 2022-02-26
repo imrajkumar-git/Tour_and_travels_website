@@ -98,6 +98,7 @@ class Suitable_Date(models.Model):
 
     From=models.DateField(null=True)
     travels_place_information= models.ForeignKey(Travelsplacesinformation,related_name='departure_Date',null=True,on_delete=models.CASCADE)
+    Discount=models.ImageField([MinValueValidator(0),MaxValueValidator(100)],null=False,default="12%",blank=False)
 
     TO=models.DateField(null=True)
     Month = models.ForeignKey(Departure_Month, on_delete=models.CASCADE, related_name='suitable_date', null=True, blank=True)

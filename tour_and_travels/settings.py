@@ -152,6 +152,36 @@ MEDIA_ROOT = os.path.join('media')
 
 
 
+CORS_ALLOWED_ORIGINS = [
+    "https://192.168.0.100:8888",
+    "https://192.168.43.203:8888",
+    "http://localhost:8888",
+    "http://127.0.0.1:8000"
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    
+]
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
