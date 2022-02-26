@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'Useraddresses','Useraddresses_api','Travels_place_table','Travels_place_table_api',
     'django_filters',
     'tinymce',
-    'Package_Booking_app',
     'Travels_Blogs',
     
 ]
