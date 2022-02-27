@@ -34,8 +34,8 @@ router.register('suitable-places', Suitable_places_ViewSet,basename='suitable-pl
 router.register('highlights', Highlights_ViewSet,basename='highlights')
 router.register('cost-details', Cost_Details_ViewSet,basename='cost-details')
 router.register('blogs', Travels_blogs_viewSet,basename='Travels_blogs')
-router.register('User-comment', Travels_blogs_Comment_viewSet,basename='Travels_blogs_comment')
-router.register('blogs-image',Travels_blogs_image_viewSet,basename="Travels-image")
+router.register('user-comment', Travels_blogs_Comment_viewSet,basename='Travels_blogs_comment')
+router.register('gallery',Travels_blogs_image_viewSet,basename="Travels-image")
 router.register('blogs-category',Travels_blogs_category_viewSet,basename='blogs-category')
 router.register('wishlist',Wishlist_ViewSet,basename='wishlist')
 

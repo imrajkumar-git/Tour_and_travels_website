@@ -33,7 +33,7 @@ class Travels_blogs_category(admin.ModelAdmin):
 admin.site.register(Travels_Blogs_category,Travels_blogs_category)   
 
 class wishlist(admin.ModelAdmin):
-   list_display=['id','Title'
+   list_display=['id','User'
    ]
 admin.site.register(Wishlist,wishlist)   
    

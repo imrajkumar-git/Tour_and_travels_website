@@ -47,13 +47,8 @@ class Travels_Blogs_Gallery(models.Model):
 
 class Wishlist(models.Model):
         Travels_place_information=models.ForeignKey(Travelsplacesinformation,on_delete=models.CASCADE,null=True)
-        Title=models.CharField(max_length=3500,null=False,default="Our own title")
-        category=models.ForeignKey(Travels_Blogs_category,on_delete=models.CASCADE,null=False)
         User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
-        Blogs=models.ForeignKey(Travels_Blogs,on_delete=models.CASCADE,null=True)
-        Activity_Level=models.CharField(max_length=1000,default="Modarate",null=False)
-        Age=models.IntegerField(default="14+",null=False)
-        Duration=models.CharField(max_length=200,default="14D",null=False)
+       
 
         def __str__(self):
             return self.Title

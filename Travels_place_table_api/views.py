@@ -2,6 +2,7 @@
 
 # Create your views here.
 from django.db.models import query
+from itsdangerous import Serializer
 from rest_framework import permissions
 from rest_framework import response
 from Travels_Blogs.models import Travels_Blogs_Comment
@@ -95,7 +96,7 @@ class Wishlist_ViewSet(viewsets.ModelViewSet):
     serializer_class = Wishlist_serializer
     lookup_field = 'travel_category'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['category','id']
+    filter_fields = ['User','travels_place_information','id']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
@@ -232,15 +233,27 @@ class Travels_blogs_viewSet(viewsets.ModelViewSet):
     
     queryset =Travels_Blogs.objects.all()
     serializer_class = Travels_Blogs_Serializer
-    lookup_field = 'travel_category'
+    lookup_field = 'slug'
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['Blog_Title','slug']
+    filter_fields = ['Blog_Title','slug','id']
     permissions_classes = (ActionBasedPermission)
     action_permissions = {
         IsAdminUser : ['update','create','destroy','partial_update'],
         AllowAny : ['list','retrieve'],
-    } 
+        IsAuthenticated:['put'],
 
+    
+
+
+    } 
+    # def put(self,request, *args, **kwargs):
+    #     Serializer=Travels_Blogs_Serializer(data=request.data)
+    #     if Serializer.is_valid():
+    #         Serializer.update()
+    #         return Response(Serializer.data,status=status.HTTP_201_CREATED)
+    #     return Response(Serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+   
+    
     
 class Travels_blogs_Comment_viewSet(viewsets.ModelViewSet):
     
@@ -315,7 +328,7 @@ class Package_booking_ViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         response['data'] = serializer.data
-        response['response'] = "Room is successfully booked"
+        response['response'] = "Your Package is successfully booked"
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
 
     def post(self, request, *args, **kwargs):
